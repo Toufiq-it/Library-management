@@ -1,4 +1,4 @@
-import { Model, model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import { IBorrow } from "./borrow.interface";
 import { Books } from "../Books/books.model";
 
@@ -37,8 +37,8 @@ borrowSchema.pre('save', async function (next) {
 });
 
 // Post
-borrowSchema.post('save', function (doc) {
-  console.log(`Borrow has been saved ${doc.book}`);
+borrowSchema.post('save', function () {
+  // console.log(`Borrow has been saved ${doc.book}`);
 });
 
 export const Borrow = model<IBorrow>("Borrow", borrowSchema);

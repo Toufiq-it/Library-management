@@ -14,13 +14,14 @@ booksRouters.post('/', async (req: Request, res: Response) => {
             message: "Book Created successfuly",
             data
         });
-    } catch (error: any) {
-        console.log(error);
-        res.status(400).json({
+    } catch (error: unknown) {
+        if (error instanceof Error){
+            res.status(400).json({
             success: false,
             message: error.message,
             error
         });
+        }        
     }
 });
 
@@ -33,12 +34,11 @@ booksRouters.get('/', async (req: Request, res: Response) => {
         const limit = parseInt(req.query.limit as string) || 10;
 
         // filter
-        const filter: any = {};
+        const filter: Record<string, unknown> = {};
         if (genre) {
             filter.genre = genre;
         }
-
-        const books = await Books.find(filter)
+        const books = await Books.find(filter, { new: true})
             .sort({ [sortField]: sortOrder })
             .limit(limit);
 
@@ -47,13 +47,14 @@ booksRouters.get('/', async (req: Request, res: Response) => {
             message: "Books retrieved successfully",
             data: books
         });
-    } catch (error: any) {
-        console.log(error);
-        res.status(400).json({
+    } catch (error: unknown) {
+        if (error instanceof Error){
+            res.status(400).json({
             success: false,
             message: error.message,
             error
         });
+        }
     }
 });
 
@@ -68,13 +69,14 @@ booksRouters.get('/:bookId', async (req: Request, res: Response) => {
             message: "Book retrieved successfully",
             data
         });
-    } catch (error: any) {
-        console.log(error);
-        res.status(400).json({
+    } catch (error: unknown) {
+        if (error instanceof Error){
+            res.status(400).json({
             success: false,
             message: error.message,
             error
         });
+        }
     }
 });
 
@@ -90,13 +92,14 @@ booksRouters.put('/:bookId', async (req: Request, res: Response) => {
             message: "Book updated successfully",
             data
         });
-    } catch (error: any) {
-        console.log(error);
-        res.status(400).json({
+    } catch (error: unknown) {
+        if (error instanceof Error){
+            res.status(400).json({
             success: false,
             message: error.message,
             error
         });
+        }
     }
 });
 
@@ -111,12 +114,13 @@ booksRouters.delete('/:bookId', async (req: Request, res: Response) => {
             message: "Book deleted successfully",
             data
         });
-    } catch (error: any) {
-        console.log(error);
-        res.status(400).json({
+    } catch (error: unknown) {
+        if (error instanceof Error){
+            res.status(400).json({
             success: false,
             message: error.message,
             error
         });
+        }
     }
 });

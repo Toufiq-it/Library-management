@@ -25,9 +25,11 @@ async function server () {
     try {
         await mongoose.connect(config.database_url!)
 
-        console.log(`Connected on Database`);
-    } catch (error) {
-        console.error(`server error ${server}`);
+        // console.log(`Connected on Database`);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error(`server error ${server}`);
+        }
     }
 };
 

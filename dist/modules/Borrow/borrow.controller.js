@@ -1,24 +1,34 @@
-import express, { Request, Response } from "express";
-import { Borrow } from "./borrow.model";
-import { Books } from "../Books/books.model";
-
-export const borrowRouters = express.Router();
-
-
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.borrowRouters = void 0;
+const express_1 = __importDefault(require("express"));
+const borrow_model_1 = require("./borrow.model");
+const books_model_1 = require("../Books/books.model");
+exports.borrowRouters = express_1.default.Router();
 // Create Borrow
-borrowRouters.post('/', async (req: Request, res: Response) => {
+exports.borrowRouters.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { book: bookId, quantity, dueDate } = req.body;
-
         // Find book
-        const book = await Books.findById(bookId);
+        const book = yield books_model_1.Books.findById(bookId);
         if (!book) {
             return res.status(404).json({
                 success: false,
                 message: 'Book not found',
             });
         }
-
         // Check availability
         if (book.copies < quantity) {
             return res.status(400).json({
@@ -26,41 +36,37 @@ borrowRouters.post('/', async (req: Request, res: Response) => {
                 message: 'Not enough copies available',
             });
         }
-
         // Deduct copies 
         book.deductCopies(quantity);
-
         // Save updated book
-        await book.save();
-
+        yield book.save();
         // Create borrow 
-        const borrow = await Borrow.create({
+        const borrow = yield borrow_model_1.Borrow.create({
             book: book._id,
             quantity,
             dueDate,
         });
-
         // res message
         res.status(201).json({
             success: true,
             message: "Book borrowed successfully",
             data: borrow
         });
-    } catch (error: unknown) {
-        if (error instanceof Error){
+    }
+    catch (error) {
+        if (error instanceof Error) {
             res.status(400).json({
-            success: false,
-            message: error.message,
-            error
-        });
+                success: false,
+                message: error.message,
+                error
+            });
         }
     }
-});
-
+}));
 // BorrowSummary
-borrowRouters.get('/', async (req: Request, res: Response) => {
+exports.borrowRouters.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const summary = await Borrow.aggregate([
+        const summary = yield borrow_model_1.Borrow.aggregate([
             // pipeline-1
             {
                 $group: {
@@ -93,20 +99,20 @@ borrowRouters.get('/', async (req: Request, res: Response) => {
                 },
             },
         ]);
-
         //res message
         res.status(201).json({
             success: true,
             message: "Borrowed books summary retrieved successfully",
             data: summary
         });
-    } catch (error: unknown) {
-        if (error instanceof Error){
+    }
+    catch (error) {
+        if (error instanceof Error) {
             res.status(400).json({
-            success: false,
-            message: error.message,
-            error
-        });
+                success: false,
+                message: error.message,
+                error
+            });
         }
     }
-});
+}));
