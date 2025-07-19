@@ -38,11 +38,11 @@ booksRouters.get('/', async (req: Request, res: Response) => {
         if (genre) {
             filter.genre = genre;
         }
-        const books = await Books.find(filter, { new: true})
-            .sort({ [sortField]: sortOrder })
-            .limit(limit);
+        
+        const books = await Books.find(filter).sort({ [sortField]: sortOrder }).limit(limit).lean();
 
-        res.status(201).json({
+
+        res.status(200).json({
             success: true,
             message: "Books retrieved successfully",
             data: books

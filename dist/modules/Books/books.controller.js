@@ -48,10 +48,8 @@ exports.booksRouters.get('/', (req, res) => __awaiter(void 0, void 0, void 0, fu
         if (genre) {
             filter.genre = genre;
         }
-        const books = yield books_model_1.Books.find(filter, { new: true })
-            .sort({ [sortField]: sortOrder })
-            .limit(limit);
-        res.status(201).json({
+        const books = yield books_model_1.Books.find(filter).sort({ [sortField]: sortOrder }).limit(limit).lean();
+        res.status(200).json({
             success: true,
             message: "Books retrieved successfully",
             data: books

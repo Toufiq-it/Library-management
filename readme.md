@@ -1,6 +1,5 @@
-# Assignment
 
-# 📚 Library Management API with Express, TypeScript & MongoDB
+# 📚 Assignment: Library Management 
 
 A simple Node.js + Express + TypeScript REST API for managing books and borrow records.
 
@@ -8,11 +7,11 @@ A simple Node.js + Express + TypeScript REST API for managing books and borrow r
 
 ## 🚀 Features
 
-- Add and retrieve books
+- Books Add and retrieve
 - Borrow books with due dates
 - Auto-update availability when books are borrowed
 - Aggregated summary of borrowed books
-- Validation using Zod
+- Validation and error handling
 - MongoDB + Mongoose
 
 ---
@@ -26,3 +25,9 @@ A simple Node.js + Express + TypeScript REST API for managing books and borrow r
 - Mongoose
 
 ---
+
+## Server Live link
+
+- GitHub Link : https://github.com/Toufiq-it/Library-management
+- Live Link : https://library-managment-eta.vercel.app/
+- Video Explanation : 

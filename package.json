@@ -2,8 +2,8 @@
   "name": "assignment-3",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
+    "build": "tsc",
     "lint": "npx eslint src --ignore-pattern .ts",
     "lint:fix": "npx eslint src --fix",
     "prettier": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\"",

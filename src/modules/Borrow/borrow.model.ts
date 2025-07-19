@@ -27,7 +27,7 @@ export const borrowSchema = new Schema<IBorrow>({
     timestamps: true
 });
 
-// Pre
+// Pre Hook
 borrowSchema.pre('save', async function (next) {
   const bookExists = await Books.findById(this.book);
   if (!bookExists) {
