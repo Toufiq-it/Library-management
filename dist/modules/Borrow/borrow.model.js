@@ -35,7 +35,7 @@ exports.borrowSchema = new mongoose_1.Schema({
     versionKey: false,
     timestamps: true
 });
-// Pre
+// Pre Hook
 exports.borrowSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         const bookExists = yield books_model_1.Books.findById(this.book);

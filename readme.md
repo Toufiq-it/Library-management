@@ -26,8 +26,8 @@ A simple Node.js + Express + TypeScript REST API for managing books and borrow r
 
 ---
 
-## Server Live link
+## Project link
 
 - GitHub Link : https://github.com/Toufiq-it/Library-management
-- Live Link : https://library-managment-eta.vercel.app/
-- Video Explanation : 
+- Server Live Link : https://library-managment-eta.vercel.app/
+- Video Explanation : https://drive.google.com/file/d/1gLjWyIy4jjQS8q5u7yTxuGILfGFlSI3M/view?usp=sharing
