@@ -1,5 +1,5 @@
 
-# 📚 Assignment: Library Management 
+# 📚 Library Management System Backend
 
 A simple Node.js + Express + TypeScript REST API for managing books and borrow records.
 
@@ -28,6 +28,10 @@ A simple Node.js + Express + TypeScript REST API for managing books and borrow r
 
 ## Project link
 
-- GitHub Link : https://github.com/Toufiq-it/Library-management
-- Server Live Link : https://library-managment-eta.vercel.app/
+- Backend Live Link : https://library-managment-eta.vercel.app/
+
+- Frontend Live link : https://react-library-client.vercel.app/
+
+- Frontend GitHub Link : https://github.com/Toufiq-it/React-library
+
 - Video Explanation : https://drive.google.com/file/d/1gLjWyIy4jjQS8q5u7yTxuGILfGFlSI3M/view?usp=sharing
