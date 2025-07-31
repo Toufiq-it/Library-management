@@ -7,8 +7,10 @@ import { borrowRouters } from "./modules/Borrow/borrow.controller";
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+app.use(cors({ 
+    origin : ["http://localhost:5173", "https://react-library-client.vercel.app"]
+}));
 
 app.use("/api/books", booksRouters);
 app.use("/api/borrow", borrowRouters);

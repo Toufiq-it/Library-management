@@ -19,8 +19,10 @@ const config_1 = __importDefault(require("./config"));
 const books_controller_1 = require("./modules/Books/books.controller");
 const borrow_controller_1 = require("./modules/Borrow/borrow.controller");
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+app.use((0, cors_1.default)({
+    origin: ["http://localhost:5173", "https://react-library-client.vercel.app"]
+}));
 app.use("/api/books", books_controller_1.booksRouters);
 app.use("/api/borrow", borrow_controller_1.borrowRouters);
 app.get('/', (req, res) => {
